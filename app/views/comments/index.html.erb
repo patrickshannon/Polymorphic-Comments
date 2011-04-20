@@ -1,0 +1,45 @@
+<h1>Listing comments</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Body</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @comments.each do |comment| %>
+  <tr>
+    <td><%= comment.name %></td>
+    <td><%= comment.body %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= form_for([@commentable, Comment.new]) do |f| %>
+  <% if @commentable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commentable.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @commentable.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+

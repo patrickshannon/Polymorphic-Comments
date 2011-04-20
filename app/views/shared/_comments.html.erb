@@ -1,0 +1,8 @@
+<% commentable.comments.each do |comment| %>
+	<p><strong><%= comment.name %></strong></p>
+	<p><%= comment.created_at.strftime('%B %d, %Y at %I:%M%p') %></p>
+	<%= simple_format auto_link comment.body %>
+	<p><small><%= link_to 'Reply', new_comment_path(:parent_id => comment, :commentable => commentable) %></small></p>
+<% end %>
+
+<%= render :partial => 'comments/form', :locals => { :commentable => commentable } %>
