@@ -14,7 +14,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1.xml
   def show
     @article = Article.find(params[:id])
-    @comment = Comment.new
+    @commentable = @article
+    @comments = @article.comments.arrange(:order => :created_at)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,4 +82,15 @@ class ArticlesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+private
+
+  def find_commentable
+    params.each do |name, value|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(value)
+      end
+    end
+    nil
+  end  
 end

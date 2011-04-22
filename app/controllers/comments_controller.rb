@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
 
   def index
   	@commentable = find_commentable
-    @comments = @commentable.comments
+    @comments = @commentable.comments.order(:created_at)
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,6 +22,7 @@ class CommentsController < ApplicationController
 
   def new
     @comment = Comment.new(:parent_id => params[:parent_id])
+	@commentable = find_commentable
 
     respond_to do |format|
       format.html # new.html.erb

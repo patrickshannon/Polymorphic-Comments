@@ -54,3 +54,11 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+.comment {
+	background: #CCC;
+	padding: 16px;
+	margin: 16px 0;
+	}
+
+.replies { margin-left: 25px; }

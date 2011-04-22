@@ -14,6 +14,8 @@ class BlogsController < ApplicationController
   # GET /blogs/1.xml
   def show
     @blog = Blog.find(params[:id])
+    @commentable = @blog
+    @comments = @blog.comments.arrange(:order => :created_at)
 
     respond_to do |format|
       format.html # show.html.erb
