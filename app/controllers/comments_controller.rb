@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def index
-  	@commentable = find_commentable
+  	 @commentable = find_commentable
     @comments = @commentable.comments.order(:created_at)
     @comment = Comment.new
 
@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new(:parent_id => params[:parent_id])
+   @comment = Comment.new(:parent_id => params[:parent_id])
 	@commentable = find_commentable
 
     respond_to do |format|
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-  	@commentable = find_commentable
+  	 @commentable = find_commentable
     @comment = @commentable.comments.build(params[:comment])
 
     if @comment.save

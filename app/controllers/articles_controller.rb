@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @commentable = @article
+    @comment = Comment.new
     @comments = @article.comments.arrange(:order => :created_at)
 
     respond_to do |format|

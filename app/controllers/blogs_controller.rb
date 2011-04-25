@@ -15,6 +15,7 @@ class BlogsController < ApplicationController
   def show
     @blog = Blog.find(params[:id])
     @commentable = @blog
+    @comment = Comment.new    
     @comments = @blog.comments.arrange(:order => :created_at)
 
     respond_to do |format|

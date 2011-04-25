@@ -16,7 +16,11 @@
 	<h3>No comments!</h3>
 <% end %>
 
+<%= render 'comments/form' %>
+
 <%= link_to 'Leave Comment', new_article_comment_path(@article) %>
+
+
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
